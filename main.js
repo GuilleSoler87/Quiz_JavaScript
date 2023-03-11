@@ -37,3 +37,6 @@ quizResultsLink.addEventListener("click", showResultsFromQuiz);
 
 // Mostrar la página de inicio al cargar la página
 showHome();
+
+// Probaremos con esta API primero si funciona todo, en principio es de 10 preguntas, pero no sé cuantas opciones da. Si no coincide con lo que nos piden de 4 opciones, generaremos otra API
+"https://opentdb.com/api.php?amount=10&category=15&difficulty=medium&type=multiple"
