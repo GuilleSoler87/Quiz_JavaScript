@@ -4,6 +4,7 @@ const results = document.getElementById("results");
 const homeLink = document.querySelector(".home-link");
 const quizResultsLink = document.querySelector(".quiz-results-link");
 const resultsHomeLink = document.querySelector(".results-home-link");
+const resultsQuizLink = document.querySelector(".results-quiz-link")
 
 function hideViews() {
     home.classList.add("hide");
@@ -32,9 +33,9 @@ function showResultsFromQuiz() {
 }
 
 homeLink.addEventListener("click", showQuiz);
-resultsHomeLink.addEventListener("click", showHome);
 quizResultsLink.addEventListener("click", showResultsFromQuiz);
-
+resultsHomeLink.addEventListener("click", showHome);
+resultsQuizLink.addEventListener("click", showQuiz);
 // Mostrar la página de inicio al cargar la página
 showHome();
 
