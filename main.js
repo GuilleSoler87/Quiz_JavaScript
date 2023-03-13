@@ -2,42 +2,51 @@ const home = document.getElementById("home");
 const quiz = document.getElementById("quiz");
 const results = document.getElementById("results");
 const homeLink = document.querySelector(".home-link");
+const nextButton = document.getElementById("next-btn");
+const questionContainerElement = document.getElementById("question-container");
+const questionElement = document.getElementById("question");
+const answerButtonsElement = document.getElementById("answer-buttons");
 const quizResultsLink = document.querySelector(".quiz-results-link");
 const resultsHomeLink = document.querySelector(".results-home-link");
-const resultsQuizLink = document.querySelector(".results-quiz-link")
+const API_URL = "https://opentdb.com/api.php?amount=10&category=15&difficulty=medium&type=multiple";
 
 function hideViews() {
-    home.classList.add("hide");
-    quiz.classList.add("hide");
-    results.classList.add("hide");
+  home.classList.add("hide");
+  quiz.classList.add("hide");
+  results.classList.add("hide");
 }
 
 function showHome() {
-    hideViews();
-    home.classList.remove("hide");
+  hideViews();
+  home.classList.remove("hide");
 }
 
 function showQuiz() {
-    hideViews();
-    quiz.classList.remove("hide");
+  hideViews();
+  quiz.classList.remove("hide");
+  getQuestions();
 }
 
 function showResults() {
-    hideViews();
-    results.classList.remove("hide");
+  hideViews();
+  results.classList.remove("hide");
 }
 
-function showResultsFromQuiz() {
-    // Aquí se llamaría a la función que procesa los resultados del quiz
-    showResults();
+async function getQuestions() {
+  try {
+    const response = await axios.get(API_URL);
+    questions = response.data.results;
+    console.log (questions)
+    
+  } catch (error) {
+    console.error(error);
+    alert("No se pudieron obtener las preguntas del quiz. Inténtalo de nuevo más tarde.");
+    showHome();
+  }
 }
+
 
 homeLink.addEventListener("click", showQuiz);
-quizResultsLink.addEventListener("click", showResultsFromQuiz);
+quizResultsLink.addEventListener("click", showResults);
 resultsHomeLink.addEventListener("click", showHome);
-resultsQuizLink.addEventListener("click", showQuiz);
-// Mostrar la página de inicio al cargar la página
-showHome();
 
-// Probaremos con esta API primero si funciona todo, en principio es de 10 preguntas, pero no sé cuantas opciones da. Si no coincide con lo que nos piden de 4 opciones, generaremos otra API
-"https://opentdb.com/api.php?amount=10&category=15&difficulty=medium&type=multiple"

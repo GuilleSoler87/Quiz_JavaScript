@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -8,17 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"
-        defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"
-        defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"
-        defer></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
-    <script src="main.js" defer></script>
     <title>Quiz Javascript</title>
 </head>
 
@@ -31,43 +20,59 @@
     <div class="container mt-5" id="home">
         <div class="card mx-auto" style="width: 30rem;">
             <div class="card-body">
-                <h5 class="card-title">Bienvenido al Quiz de Videojuegos</h5>
+                <img src="assets/fondo-de-pantalla-de-1280x800-gamer-1024x640.jpg" class="card-img-top" alt="...">
+                <h5 class="card-title mt-3">Bienvenido al Quiz de Videojuegos</h5>
                 <p class="card-text">Aquí podrás medir si eres un verdadero Gamer, poniendo a prueba cuánto sabes sobre
-                    los videojuegos más populares.</p>
-                <a href="#" class="btn btn-primary home-link">Comenzar el Quiz</a>
+                    los videojuegos más populares.
+
+                </p>
+                <button class="btn btn-primary home-link">Comenzar el Quiz</button>
             </div>
         </div>
     </div>
 
     <!-- Contenido de la página del quiz -->
-    <div class="container mt-5 hide" style="position: relative;" id="quiz">
-        <div class="d-flex justify-content-center">
-            <div class="quiz-card">
-                <h1 class="h1quiz">Quiz</h1>
-                <p style="padding: 5px 10px 0px 5px ;">Responde las siguientes preguntas:</p>
-                <!-- Aquí iría el código del quiz en otro div-->
-                <div>.....</div>
+    <div class="container mt-5 hide" id="quiz">
+        <div class="card mx-auto" style="width: 30rem;">
+            <div class="card-body">
+                <h1>Quiz</h1>
+                <p>Responde las siguientes preguntas:</p>
+                <!-- Aquí iría el código del quiz - preguntas-->
+                <div id="question-container" class="hide">
+                    <div id="question">Pregunta</div>
+                    <div id="answer-buttons"></div>
+                </div>
+                <button class="btn btn-primary next-btn">Siguiente</button>
+                <button class="btn btn-primary quiz-results-link">Ver resultados</button>
             </div>
         </div>
-        <button class="btn btn-primary quiz-results-link"  id="buttonResults">Ver resultados</button>
     </div>
 
     <!-- Contenido de la página de resultados -->
     <div class="container mt-5 hide" id="results">
-        <div class="d-flex justify-content-center">
-            <div>
+        <div class="card mx-auto" style="width: 30rem;">
+            <div class="card-body">
                 <h1>Resultados</h1>
                 <p>Aquí tienes los resultados:</p>
                 <!-- Aquí iría el código de los resultados en otro div-->
                 <div>.....</div>
-                <a href="#" class="btn btn-primary results-quiz-link">Volver al Quiz</a>
                 <a href="#" class="btn btn-primary results-home-link">Volver a realizar el Quiz</a>
             </div>
         </div>
     </div>
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
