@@ -7,6 +7,7 @@ const resultsButton = document.getElementById("result-btn");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
+const resetButtonLink = document.querySelector(".quiz-reset-link");
 const quizResultsLink = document.querySelector(".quiz-results-link");
 const resultsHomeLink = document.querySelector(".results-home-link");
 const API_URL = "https://opentdb.com/api.php?amount=10&category=15&difficulty=medium&type=multiple";
@@ -18,6 +19,7 @@ function hideViews() {
   home.classList.add("hide");
   quiz.classList.add("hide");
   results.classList.add("hide");
+  resultsButton.classList.add("hide");
 }
 
 function showHome() {
@@ -31,7 +33,7 @@ async function getQuestions() {
     const questions = response.data.results;
     let currentQuestionIndex = 0;
     let score = 0;
-// funcíón que llama a la siguiente pregunta
+    // funcíón que llama a la siguiente pregunta
     function nextQuestion() {
       currentQuestionIndex++;
       if (currentQuestionIndex < questions.length) {
@@ -50,11 +52,12 @@ async function getQuestions() {
         nextButton.classList.add("hide");
 
         localStorage.setItem("score", score);
+
       }
     }
     // función que pinta las preguntas y los botones de las posibles respuestas
     function showQuestion(question, shuffledAnswers, correctAnsw) {
-      questionElement.innerHTML = `<p>${question}</p>`;
+      questionElement.innerHTML = `<h4>${question}</h4>`;
 
       answerButtonsElement.innerHTML = "";
       const buttons = [];
@@ -62,7 +65,7 @@ async function getQuestions() {
       shuffledAnswers.forEach((answer) => {
         const button = document.createElement("button");
         button.innerHTML = answer;
-        button.classList.add("btn", "btn-primary", "m-1");
+        button.classList.add("btn", "btn-primary", "d-block", "my-3", "mt-4","btn-lg");
         if (answer === correctAnsw) {
           button.dataset.correct = true;
         }
@@ -79,7 +82,7 @@ async function getQuestions() {
             // cuando seleccionas una opción, se bloquean todas y no te permite cambiar
             button.disabled = true;
           });
-// cuando ya has seleccionado la respuesta y se bloquean todas a los 2 segundos pasa a la siguiente pregunta
+          // cuando ya has seleccionado la respuesta y se bloquean todas a los 2 segundos pasa a la siguiente pregunta
           setTimeout(() => {
             nextQuestion();
           }, 2000);
@@ -89,9 +92,9 @@ async function getQuestions() {
         buttons.push(button);
       });
 
-   
+
     }
-// muestra las preguntas de forma aleatoria, gracias la función que hay debajo shuffleArray
+    // muestra las preguntas de forma aleatoria, gracias la función que hay debajo shuffleArray
     showQuestion(questions[0].question, shuffleArray([...questions[0].incorrect_answers, questions[0].correct_answer]), questions[0].correct_answer);
   } catch (error) {
     console.error(error);
@@ -115,7 +118,7 @@ function showQuiz() {
   getQuestions();
 }
 
-// traerá del local Storage la suma de todos los valores recogidos durante el cuestionario
+// traerá del local Storage la suma de todos los valores recogidos durante el
 function showResults() {
   hideViews();
   results.classList.remove("hide");
@@ -123,6 +126,7 @@ function showResults() {
 
 
 homeLink.addEventListener("click", showQuiz);
+resetButtonLink.addEventListener("click", showHome);
 quizResultsLink.addEventListener("click", showResults);
 resultsHomeLink.addEventListener("click", showHome);
 
