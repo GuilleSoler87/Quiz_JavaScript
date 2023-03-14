@@ -2,8 +2,9 @@ const home = document.getElementById("home");
 const quiz = document.getElementById("quiz");
 const results = document.getElementById("results");
 const homeLink = document.querySelector(".home-link");
-const nextButton = document.getElementById("next-btn");
+// const nextButton = document.getElementById("next-btn");
 const resultsButton = document.getElementById("result-btn");
+const resetButton = document.getElementById("reset-btn");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
@@ -25,6 +26,7 @@ function hideViews() {
 function showHome() {
   hideViews();
   home.classList.remove("hide");
+  resetButton.classList.remove("hide");
 }
 // función que trae las preguntas del API
 async function getQuestions() {
@@ -47,9 +49,10 @@ async function getQuestions() {
         showQuestion(nextQuestion, nextShuffledAnswers, nextCorrectAnsw);
       } else {
         // no hay más preguntas, mostrar mensaje final y guardar puntuación
-        questionElement.innerHTML = "<p>No hay más preguntas.</p>";
+        questionElement.innerHTML = "<h4>No hay más preguntas.</h4>";
         answerButtonsElement.innerHTML = "";
-        nextButton.classList.add("hide");
+        resultsButton.classList.remove("hide")
+        resetButton.classList.add("hide");
 
         localStorage.setItem("score", score);
 
