@@ -17,6 +17,7 @@ let score = 0;
 let buttons = [];
 let attempt = 0;
 let totalScores = []
+let questions = []
 // funciones de visibilidad de navegación 
 
 function hideViews() {
@@ -31,15 +32,19 @@ function showHome() {
   home.classList.remove("hide");
   resetButton.classList.remove("hide");
   score = 0
-  localStorage.setItem("score",score)
+  localStorage.setItem("score", score)
+  questions = []
+  questionElement.innerHTML = ""
+  answerButtonsElement.innerHTML = ""
+
 }
 // función que trae las preguntas del API
 async function getQuestions() {
   try {
     const response = await axios.get(API_URL);
-    const questions = response.data.results;
+    questions = response.data.results;
     let currentQuestionIndex = 0;
-   
+
     // funcíón que llama a la siguiente pregunta
     function nextQuestion() {
       currentQuestionIndex++;
@@ -59,8 +64,6 @@ async function getQuestions() {
         resultsButton.classList.remove("hide")
         resetButton.classList.add("hide");
 
-        //localStorage.setItem("score", score);
-
       }
     }
     // función que pinta las preguntas y los botones de las posibles respuestas
@@ -68,7 +71,7 @@ async function getQuestions() {
       questionElement.innerHTML = `<h4>${question}</h4>`;
 
       answerButtonsElement.innerHTML = "";
-      
+
 
       shuffledAnswers.forEach((answer) => {
         const button = document.createElement("button");
@@ -78,21 +81,21 @@ async function getQuestions() {
           button.dataset.correct = true;
 
         }
-        
+
         button.addEventListener("click", () => {
           revealAnswers()
           if (button.dataset.correct) {
             score++
-            localStorage.setItem('score',score)
+            localStorage.setItem('score', score)
           }
           setTimeout(() => {
             nextQuestion();
           }, 2000);
         });
-        
+
         answerButtonsElement.appendChild(button);
         buttons.push(button);
-        });
+      });
 
 
     }
@@ -115,7 +118,7 @@ function revealAnswers() {
   })
 }
 
-
+// randomiza coge todo el contenido de un array, y devuelve otro array con el mismo contenido pero en posiciones diferentes aleatorias
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -128,8 +131,8 @@ function shuffleArray(array) {
 // funciones de vista de navegación trae la función principal de mostrar las preguntas con getQuestions
 function showQuiz() {
   hideViews();
-  quiz.classList.remove("hide");
   getQuestions();
+  quiz.classList.remove("hide");
 }
 
 // traerá del local Storage la suma de todos los valores recogidos durante el último Quiz, un array historial de todos los realizados
@@ -137,9 +140,9 @@ function showResults() {
   hideViews();
   finalResults.innerHTML = localStorage.getItem('score')
   results.classList.remove("hide");
-  totalScores = JSON.parse(localStorage.getItem("scores")) ||[];
+  totalScores = JSON.parse(localStorage.getItem("scores")) || [];
   totalScores.push(score)
-  localStorage.setItem("scores",JSON.stringify(totalScores));
+  localStorage.setItem("scores", JSON.stringify(totalScores));
 }
 
 
