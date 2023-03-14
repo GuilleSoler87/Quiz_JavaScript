@@ -11,9 +11,13 @@ const answerButtonsElement = document.getElementById("answer-buttons");
 const resetButtonLink = document.querySelector(".quiz-reset-link");
 const quizResultsLink = document.querySelector(".quiz-results-link");
 const resultsHomeLink = document.querySelector(".results-home-link");
+const finalResults = document.getElementById("finalResults")
 const API_URL = "https://opentdb.com/api.php?amount=10&category=15&difficulty=medium&type=multiple";
 let currentQuestionIndex;
-
+let score=0;
+let buttons = [];
+let attempt = 0;
+let totalScores = []
 // funciones de visibilidad de navegación 
 
 function hideViews() {
@@ -27,6 +31,8 @@ function showHome() {
   hideViews();
   home.classList.remove("hide");
   resetButton.classList.remove("hide");
+  score = 0
+  localStorage.setItem("score",score)
 }
 // función que trae las preguntas del API
 async function getQuestions() {
@@ -34,7 +40,7 @@ async function getQuestions() {
     const response = await axios.get(API_URL);
     const questions = response.data.results;
     let currentQuestionIndex = 0;
-    let score = 0;
+    //let score = 1;
     // funcíón que llama a la siguiente pregunta
     function nextQuestion() {
       currentQuestionIndex++;
@@ -54,7 +60,7 @@ async function getQuestions() {
         resultsButton.classList.remove("hide")
         resetButton.classList.add("hide");
 
-        localStorage.setItem("score", score);
+        //localStorage.setItem("score", score);
 
       }
     }
@@ -63,37 +69,31 @@ async function getQuestions() {
       questionElement.innerHTML = `<h4>${question}</h4>`;
 
       answerButtonsElement.innerHTML = "";
-      const buttons = [];
+      
 
       shuffledAnswers.forEach((answer) => {
         const button = document.createElement("button");
         button.innerHTML = answer;
-        button.classList.add("btn", "btn-primary", "d-block", "mt-3","btn-lg");
+        button.classList.add("btn", "btn-primary", "d-block", "mt-3", "btn-lg");
         if (answer === correctAnsw) {
           button.dataset.correct = true;
-        }
 
+        }
+        
         button.addEventListener("click", () => {
-          buttons.forEach((button) => {
-            if (button.dataset.correct) {
-              button.classList.add("btn-success");
-              // si aprietas respuesta correctAnsw, sumas 1 al local storage
-              score++;
-            } else {
-              button.classList.add("btn-danger");
-            }
-            // cuando seleccionas una opción, se bloquean todas y no te permite cambiar
-            button.disabled = true;
-          });
-          // cuando ya has seleccionado la respuesta y se bloquean todas a los 2 segundos pasa a la siguiente pregunta
+          revealAnswers()
+          if (button.dataset.correct) {
+            score++
+            localStorage.setItem('score',score)
+          }
           setTimeout(() => {
             nextQuestion();
           }, 2000);
         });
-
+        
         answerButtonsElement.appendChild(button);
         buttons.push(button);
-      });
+        });
 
 
     }
@@ -102,6 +102,18 @@ async function getQuestions() {
   } catch (error) {
     console.error(error);
   }
+}
+// esta función colorea los botones, verde correcta, y rojas incorrectas todas a la vez
+function revealAnswers() {
+  buttons.forEach((button) => {
+    if (button.dataset.correct) {
+      button.classList.add("btn-success");
+    } else {
+      button.classList.add("btn-danger");
+    }
+    // cuando seleccionas una opción, se bloquean todas y no te permite cambiar
+    button.disabled = true;
+  })
 }
 
 
@@ -124,9 +136,15 @@ function showQuiz() {
 // traerá del local Storage la suma de todos los valores recogidos durante el
 function showResults() {
   hideViews();
+  finalResults.innerHTML = localStorage.getItem('score')
   results.classList.remove("hide");
+  totalScores = JSON.parse(localStorage.getItem("scores")) ||[];
+  totalScores.push(score)
+  localStorage.setItem("scores",JSON.stringify(totalScores));
 }
 
+
+//finalResults.innerHTML = parseInt(localStorage.getItem('score'))
 
 homeLink.addEventListener("click", showQuiz);
 resetButtonLink.addEventListener("click", showHome);
