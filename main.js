@@ -65,7 +65,7 @@ async function getQuestions() {
       shuffledAnswers.forEach((answer) => {
         const button = document.createElement("button");
         button.innerHTML = answer;
-        button.classList.add("btn", "btn-primary", "d-block", "my-3", "mt-4","btn-lg");
+        button.classList.add("btn", "btn-primary", "d-block", "mt-3","btn-lg");
         if (answer === correctAnsw) {
           button.dataset.correct = true;
         }
