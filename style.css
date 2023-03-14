@@ -2,3 +2,8 @@
     display: none;
 }
 
+#finalResults {
+    font-size: 50px; /* aumenta el tamaño de la letra */
+    text-align: center;/* centra el contenido */
+    font-weight: bold; /* pone en negrita */
+  }

@@ -2,7 +2,6 @@ const home = document.getElementById("home");
 const quiz = document.getElementById("quiz");
 const results = document.getElementById("results");
 const homeLink = document.querySelector(".home-link");
-// const nextButton = document.getElementById("next-btn");
 const resultsButton = document.getElementById("result-btn");
 const resetButton = document.getElementById("reset-btn");
 const questionContainerElement = document.getElementById("question-container");
@@ -14,7 +13,7 @@ const resultsHomeLink = document.querySelector(".results-home-link");
 const finalResults = document.getElementById("finalResults")
 const API_URL = "https://opentdb.com/api.php?amount=10&category=15&difficulty=medium&type=multiple";
 let currentQuestionIndex;
-let score=0;
+let score = 0;
 let buttons = [];
 let attempt = 0;
 let totalScores = []
@@ -40,7 +39,7 @@ async function getQuestions() {
     const response = await axios.get(API_URL);
     const questions = response.data.results;
     let currentQuestionIndex = 0;
-    //let score = 1;
+   
     // funcíón que llama a la siguiente pregunta
     function nextQuestion() {
       currentQuestionIndex++;
@@ -133,7 +132,7 @@ function showQuiz() {
   getQuestions();
 }
 
-// traerá del local Storage la suma de todos los valores recogidos durante el
+// traerá del local Storage la suma de todos los valores recogidos durante el último Quiz, un array historial de todos los realizados
 function showResults() {
   hideViews();
   finalResults.innerHTML = localStorage.getItem('score')
@@ -143,8 +142,6 @@ function showResults() {
   localStorage.setItem("scores",JSON.stringify(totalScores));
 }
 
-
-//finalResults.innerHTML = parseInt(localStorage.getItem('score'))
 
 homeLink.addEventListener("click", showQuiz);
 resetButtonLink.addEventListener("click", showHome);
