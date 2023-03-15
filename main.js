@@ -145,7 +145,7 @@ function showResults() {
   localStorage.setItem("scores", JSON.stringify(totalScores));
 }
 
-
+// funciones que llama a los eventos de navegación tras apretar los botones
 homeLink.addEventListener("click", showQuiz);
 resetButtonLink.addEventListener("click", showHome);
 quizResultsLink.addEventListener("click", showResults);
@@ -169,7 +169,7 @@ const myGrafic = new Chart(grafic, {
     }]
   }
 })
-
+// función de actualización del gráfico automáticamente
 function updateGrafic() {
   // Recuperar el array del localStorage y convertirlo a un objeto
   let graficWigth = JSON.parse(localStorage.getItem('scores'));
