@@ -151,3 +151,22 @@ resetButtonLink.addEventListener("click", showHome);
 quizResultsLink.addEventListener("click", showResults);
 resultsHomeLink.addEventListener("click", showHome);
 
+//funcion del grafico
+
+const grafic = document.getElementById('grafica')
+const graficLength = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,]
+const graficWigth = JSON.parse(localStorage.getItem('scores'))
+
+const myGrafic = new Chart(grafic, {
+  type: 'line',
+  data: {
+    labels: graficLength,
+    datasets: [{
+      label: 'Puntuacion',
+      data: graficWigth,
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(54, 162, 235, 1)',
+      borderWidth: 1.5
+    }]
+  }
+})

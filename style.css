@@ -7,3 +7,6 @@
     text-align: center;/* centra el contenido */
     font-weight: bold; /* pone en negrita */
   }
+  canvas {
+    max-width: 100%;
+  }
