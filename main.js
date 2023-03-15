@@ -36,7 +36,7 @@ function showHome() {
   questions = []
   questionElement.innerHTML = ""
   answerButtonsElement.innerHTML = ""
-  updateGrafic();
+  updateGrafic()
 }
 // función que trae las preguntas del API
 async function getQuestions() {
@@ -159,9 +159,9 @@ const grafic = document.getElementById('grafica')
 const myGrafic = new Chart(grafic, {
   type: 'line',
   data: {
-    labels: graficLength,
+    labels: graficLength.map((_, index) => `Quiz ${index + 1}`),
     datasets: [{
-      label: 'Puntuacion',
+      label: 'Puntuación',
       data: graficLength,
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
       borderColor: 'rgba(54, 162, 235, 1)',
@@ -176,7 +176,7 @@ function updateGrafic() {
   const graficLength = graficWigth.slice(-10);
   
   // Actualizar los datos del gráfico y las etiquetas
-  myGrafic.data.labels = graficLength.map((_, index) => `Elemento ${index + 1}`);
+  myGrafic.data.labels = graficLength.map((_, index) => `Quiz ${index + 1}`);
   myGrafic.data.datasets[0].data = graficLength;
   
   // Actualizar el gráfico en el navegador
