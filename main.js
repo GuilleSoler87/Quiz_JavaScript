@@ -36,7 +36,7 @@ function showHome() {
   questions = []
   questionElement.innerHTML = ""
   answerButtonsElement.innerHTML = ""
-
+  updateGrafic();
 }
 // función que trae las preguntas del API
 async function getQuestions() {
@@ -152,10 +152,9 @@ quizResultsLink.addEventListener("click", showResults);
 resultsHomeLink.addEventListener("click", showHome);
 
 //funcion del grafico
-
+let graficWigth = JSON.parse(localStorage.getItem('scores'))
+const graficLength = graficWigth.slice(-10);
 const grafic = document.getElementById('grafica')
-const graficLength = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,]
-const graficWigth = JSON.parse(localStorage.getItem('scores'))
 
 const myGrafic = new Chart(grafic, {
   type: 'line',
@@ -163,10 +162,23 @@ const myGrafic = new Chart(grafic, {
     labels: graficLength,
     datasets: [{
       label: 'Puntuacion',
-      data: graficWigth,
+      data: graficLength,
       backgroundColor: 'rgba(255, 99, 132, 0.2)',
       borderColor: 'rgba(54, 162, 235, 1)',
       borderWidth: 1.5
     }]
   }
 })
+
+function updateGrafic() {
+  // Recuperar el array del localStorage y convertirlo a un objeto
+  let graficWigth = JSON.parse(localStorage.getItem('scores'));
+  const graficLength = graficWigth.slice(-10);
+  
+  // Actualizar los datos del gráfico y las etiquetas
+  myGrafic.data.labels = graficLength.map((_, index) => `Elemento ${index + 1}`);
+  myGrafic.data.datasets[0].data = graficLength;
+  
+  // Actualizar el gráfico en el navegador
+  myGrafic.update();
+}
