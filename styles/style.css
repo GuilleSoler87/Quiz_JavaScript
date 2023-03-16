@@ -3,9 +3,10 @@
 }
 
 #finalResults {
-    font-size: 50px; /* aumenta el tamaño de la letra */
+    font-size: 70px; /* aumenta el tamaño de la letra */
     text-align: center;/* centra el contenido */
     font-weight: bold; /* pone en negrita */
+    color: rgb(70, 50, 250);
   }
   canvas {
     max-width: 100%;
