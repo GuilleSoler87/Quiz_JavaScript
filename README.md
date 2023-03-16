@@ -64,7 +64,7 @@ Axios es una librería JavaScript que puede ejecutarse en el navegador y que nos
 
 ## Ejecutando ChartJS - Gráfico ⌨️
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" defer></script> --- (Código que utilizamos para instalar ChartJs). ChartJs es una libreria que proporciona un modelo de graficos, el cual podemos implementar en nuestros proyectos de web.
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" defer></script> --- (Código que utilizamos para instalar ChartJs). ChartJs es una libreria que proporciona un modelo de graficos, el cual podemos implementar en nuestros proyectos web.
 
 <canvas id="grafica" class="mt-3" height="300" width="300"></canvas> --- (En el código HTML especificaremos donde aparecerá la gráfica dentro de la etiqueta <canvas>).
 
