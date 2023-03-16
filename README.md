@@ -63,8 +63,7 @@ En los códigos JavaScript encontramos funciones del tipo:
 Axios es una librería JavaScript que puede ejecutarse en el navegador y que nos permite hacer sencillas las operaciones como cliente HTTP.
 
 ## Ejecutando ChartJS - Gráfico ⌨️
-
-<!-- Añadir info Vlad -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js" defer></script>--- (Código que utilizamos para instalar ChartJs). ChartJs es una libreria que proporciona un modelo de graficos, el cual podemos implementar en nuestros proyectos de web.
 
 ## Construido con 🛠️
 
@@ -86,7 +85,7 @@ Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones
 
 * **Guillermo Soler Fernández** - *Proyecto Quiz - JavaScript* - [GuilleSoler87](https://github.com/GuilleSoler87)
 
-* **Volodymyr Kolomiets** - *Proyecto Quiz - JavaScript* - [VolodymyrKolomiets](https://github.com/VolodymyrKolomiets)
+* **Volodymyr Kolomiiets** - *Proyecto Quiz - JavaScript* - [VolodymyrKolomiets](https://github.com/VolodymyrKolomiets)
 
 
 ## Licencia 📄
